@@ -13,8 +13,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import java.util.Collections;
-
 
 public final class SortingList extends Application {
 
@@ -30,21 +28,20 @@ public final class SortingList extends Application {
     public void start(Stage stage) {
         TableView<Student> table = buildTable();
 
-
-        Button btnSortByName = new Button("Сортувати за іменем");
-        Button btnSortBySurname = new Button("Сортувати за прізвищем");
-        Button btnSortByGpa = new Button("Сортувати за середнім балом");
+        Button btnSortByName = new Button("Сортувати за іменем");      
+        Button btnSortBySurname = new Button("Сортувати за прізвищем");  
+        Button btnSortByGpa = new Button("Сортувати за середнім балом"); 
 
         final boolean[] ascendingByName = { true };
         final boolean[] ascendingBySurname = { true };
         final boolean[] ascendingByGpa = { true };
-
 
         btnSortByName.setOnAction(e -> {
             students.sort(new NameSorter(ascendingByName[0]));
             ascendingByName[0] = !ascendingByName[0];
             table.refresh();
         });
+
 
         btnSortBySurname.setOnAction(e -> {
             students.sort(new SurnameSorter(ascendingBySurname[0]));
@@ -72,7 +69,7 @@ public final class SortingList extends Application {
 
     private TableView<Student> buildTable() {
         TableView<Student> table = new TableView<>(students);
-        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY_ALL_COLUMNS);
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         TableColumn<Student, String> colName = new TableColumn<>("Ім'я");
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
